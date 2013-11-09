@@ -1,0 +1,26 @@
+{
+    "version": "v0.0.1",
+    "time": 1383969350,
+    "libs": [
+        {
+            "name": "straw-android",
+            "version": "v0.2.1",
+            "type": "maven"
+        },
+        {
+            "name": "straw-android-plugin",
+            "version": "v0.2.0",
+            "type": "maven"
+        },
+        {
+            "name": "straw-android.js",
+            "version": "v0.1.1",
+            "type": "bower"
+        },
+        {
+            "name": "straw-android-plugin.js",
+            "version": "v0.0.2",
+            "type": "bower"
+        }
+    ]
+}
