@@ -1,3 +1,6 @@
+
+/*=require 'bootstrap' */
+
 @charset "utf-8";
 
 body {
@@ -10,7 +13,6 @@ h1 {
   font-weight: bold;
   font-size: 32px;
   letter-spacing: -1px;
-  text-transform: uppercase;
   text-shadow: 0 1px 0 rgba(255, 255, 255, .5);
   background: url("https://1.gravatar.com/avatar/65adbfe28ca7937e17ead47565de4e1e?r=x&s=240") no-repeat center 100px;
   padding: 350px 0 10px;
