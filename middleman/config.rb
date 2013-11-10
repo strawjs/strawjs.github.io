@@ -68,3 +68,12 @@ configure :build do
   # Or use a different image path
   # set :http_prefix, "/Content/images/"
 end
+
+
+# version pages
+data.android.versions.each do |version, data|
+   proxy "/#{version}.html", "/version.html", locals: data, ignore: true
+end
+
+
+set :bower_dir, '../bower_components'
