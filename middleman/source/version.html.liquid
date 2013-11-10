@@ -1,0 +1,38 @@
+---
+title: Straw Library
+---
+
+<div class="welcome">
+
+  <h1>Straw (Android) Bundle {{ version }}</h1>
+
+  <p class="release-date">released at: {{ time | date: "%F" }}</p>
+
+</div>
+
+
+<div>
+
+  {% for lib in libs %}
+
+    <p>
+
+      <i class="icon-align-left"></i>
+      
+      <a href="https://github.com/strawjs/{{ lib.name }}">
+        {{ lib.name }}</a>
+
+      <a href="https://github.com/strawjs/{{ lib.name }}/releases">
+        <img src="http://img.shields.io/version/{{ lib.version }}.png?color=green" /></a>
+
+      <a href="https://travis-ci.org/strawjs/{{ lib.name }}">
+        <img src="https://travis-ci.org/strawjs/{{ lib.name }}.png?branch={{ lib.version }}" /></a>
+
+      <a href="https://coveralls.io/r/strawjs/{{ lib.name }}">
+        <img src="https://coveralls.io/repos/strawjs/{{ lib.name }}/badge.png" /></a>
+
+    </p>
+
+  {% endfor %}
+
+</div>
