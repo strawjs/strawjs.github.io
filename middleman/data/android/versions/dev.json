@@ -1,26 +1,26 @@
 {
     "name": "straw-bundle-android",
-    "version": "latest",
+    "version": "dev",
     "platform": "android",
     "libs": [
         {
             "name": "straw-android",
-            "version": "v0.2.1",
+            "version": "master",
             "type": "maven"
         },
         {
             "name": "straw-android-plugin",
-            "version": "v0.2.0",
+            "version": "master",
             "type": "maven"
         },
         {
             "name": "straw-android.js",
-            "version": "v0.1.1",
+            "version": "master",
             "type": "bower"
         },
         {
             "name": "straw-android-plugin.js",
-            "version": "v0.0.2",
+            "version": "master",
             "type": "bower"
         }
     ]

@@ -1,6 +1,7 @@
 # directory index (url without .html)
 activate :directory_indexes
 
+
 # asset dirs
 set :css_dir, 'stylesheets'
 set :js_dir, 'javascripts'
@@ -32,15 +33,19 @@ end
 
 
 
+
+
+
 # dynamic pages
 
 # index page
-proxy "/index.html", "/version.html", locals: data.android.versions.latest, ignore: true
+proxy "/android/index.html", "/version.html", locals: data.android.versions.latest, ignore: true
 
 # version pages
 data.android.versions.each do |version, data|
-   proxy "/#{version}.html", "/version.html", locals: data, ignore: true
+   proxy "/android/#{version}.html", "/version.html", locals: data, ignore: true
 end
 
 
-
+# disable layout
+page ".index.html", :layout => false

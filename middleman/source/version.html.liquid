@@ -2,12 +2,45 @@
 title: Straw Library
 ---
 
+
+<ol class="breadcrumb">
+
+  <li><i class="fa fa-android"></i></li>
+
+{% for ver in data.android.versions %}
+
+  <li>
+
+    <a href="/android/{{ ver[0] }}">
+
+      {{ ver[0] }}
+
+    </a>
+
+  </li>
+
+{% endfor %}
+
+</ol>
+
+<ol class="breadcrumb">
+
+ <li><i class="fa fa-apple"></i></li>
+
+ <li>not yet</li>
+
+</ol>
+
+
+
 <div class="welcome">
 
-  <h1>Straw Bundle {{ version }}</h1>
+  <h1><i class="fa fa-android"></i> {{ data.display_name[name] }} <small>{{ version }}</small></h1>
 
   {% if time %}
-    <p class="release-date">released at: {{ time | date: "%F" }}</p>
+
+    <p class="release-date">released at : {{ time | date: "%F" }}</p>
+
   {% endif %}
 
 </div>
@@ -29,12 +62,7 @@ title: Straw Library
 
         <th>travis-ci</th>
 
-        {% if version == 'latest' %}
-
-          <!-- coveralls only available for latest version -->
-          <th>coveralls</th>
-
-        {% endif %}
+        <th>coveralls</th>
 
       </tr>
 
@@ -45,11 +73,13 @@ title: Straw Library
     <tr>
 
       {% if forloop.first %}
-        <td rowspan="4">Android</td>
+
+        <td rowspan="4"><i class="fa fa-{{ platform }}"></i> {{ data.display_name[platform] }}</td>
+
       {% endif %}
 
       <td>
-        <i class="fa fa-book"></i>
+        <i class="fa fa-github"></i>
       
         <a href="https://github.com/strawjs/{{ lib.name }}">
           {{ lib.name }}</a>
@@ -58,7 +88,7 @@ title: Straw Library
 
       <td>
 
-        {{lib.version }}
+        {{ lib.version }}
 
       </td>
 
@@ -69,16 +99,10 @@ title: Straw Library
 
       </td>
 
-      {% if version == 'latest' %}
+      <td>
 
-        <!-- coveralls only available for latest version -->
-
-        <td>
-
-          <a href="https://coveralls.io/r/strawjs/{{ lib.name }}">
-            <img src="https://coveralls.io/repos/strawjs/{{ lib.name }}/badge.png" /></a>
-
-      {% endif %}
+        <a href="https://coveralls.io/r/strawjs/{{ lib.name }}?branch={{ lib.version }}">
+          <img src="https://coveralls.io/repos/strawjs/{{ lib.name }}/badge.png?branch={{ lib.version }}" /></a>
 
       </td>
 
