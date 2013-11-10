@@ -1,11 +1,13 @@
 
-/*=require 'bootstrap' */
+/*= require './bootstrap-bootswatch-spacelab.min.css' */
 
 @charset "utf-8";
 
 body {
+  /** /
   background: #d4d4d4 url("../images/background.png");
-  text-align: center;
+  background: #d4d4d4;
+  /**/
   font-family: sans-serif; }
 
 h1 {
@@ -15,7 +17,7 @@ h1 {
   letter-spacing: -1px;
   text-shadow: 0 1px 0 rgba(255, 255, 255, .5);
   background: url("https://1.gravatar.com/avatar/65adbfe28ca7937e17ead47565de4e1e?r=x&s=240") no-repeat center 100px;
-  padding: 350px 0 10px;
+  padding: 350px 0 10px 0;
   margin: 0; }
 
 .doc {
@@ -34,6 +36,7 @@ h1 {
       color: #666; }
 
 .welcome {
+  text-align: center;
   -webkit-animation-name: welcome;
   -webkit-animation-duration: .9s; }
 

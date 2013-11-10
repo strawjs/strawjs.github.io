@@ -4,35 +4,88 @@ title: Straw Library
 
 <div class="welcome">
 
-  <h1>Straw (Android) Bundle {{ version }}</h1>
+  <h1>Straw Bundle {{ version }}</h1>
 
-  <p class="release-date">released at: {{ time | date: "%F" }}</p>
+  {% if time %}
+    <p class="release-date">released at: {{ time | date: "%F" }}</p>
+  {% endif %}
 
 </div>
 
 
-<div>
+<div style="max-width: 960px; margin: auto;">
+
+  <table class="table table-striped">
+
+    <thead>
+
+      <tr>
+
+        <th></th>
+
+        <th>library</th>
+
+        <th>version</th>
+
+        <th>travis-ci</th>
+
+        {% if version == 'latest' %}
+
+          <!-- coveralls only available for latest version -->
+          <th>coveralls</th>
+
+        {% endif %}
+
+      </tr>
+
+    </thead>
 
   {% for lib in libs %}
 
-    <p>
+    <tr>
 
-      <i class="icon-align-left"></i>
+      {% if forloop.first %}
+        <td rowspan="4">Android</td>
+      {% endif %}
+
+      <td>
+        <i class="fa fa-book"></i>
       
-      <a href="https://github.com/strawjs/{{ lib.name }}">
-        {{ lib.name }}</a>
+        <a href="https://github.com/strawjs/{{ lib.name }}">
+          {{ lib.name }}</a>
 
-      <a href="https://github.com/strawjs/{{ lib.name }}/releases">
-        <img src="http://img.shields.io/version/{{ lib.version }}.png?color=green" /></a>
+      </td>
 
-      <a href="https://travis-ci.org/strawjs/{{ lib.name }}">
-        <img src="https://travis-ci.org/strawjs/{{ lib.name }}.png?branch={{ lib.version }}" /></a>
+      <td>
 
-      <a href="https://coveralls.io/r/strawjs/{{ lib.name }}">
-        <img src="https://coveralls.io/repos/strawjs/{{ lib.name }}/badge.png" /></a>
+        {{lib.version }}
 
-    </p>
+      </td>
+
+      <td>
+
+        <a href="https://travis-ci.org/strawjs/{{ lib.name }}">
+          <img src="https://travis-ci.org/strawjs/{{ lib.name }}.png?branch={{ lib.version }}" /></a>
+
+      </td>
+
+      {% if version == 'latest' %}
+
+        <!-- coveralls only available for latest version -->
+
+        <td>
+
+          <a href="https://coveralls.io/r/strawjs/{{ lib.name }}">
+            <img src="https://coveralls.io/repos/strawjs/{{ lib.name }}/badge.png" /></a>
+
+      {% endif %}
+
+      </td>
+
+    </tr>
 
   {% endfor %}
+
+  </table>
 
 </div>
