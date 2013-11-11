@@ -9,3 +9,6 @@
 
 # bower components
 bower_components
+
+# npm modules
+node_modules
