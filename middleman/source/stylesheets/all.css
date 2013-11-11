@@ -3,9 +3,6 @@
 
 @charset "utf-8";
 
-body {
-  font-family: sans-serif; }
-
 
 h1 {
   color: rgba(0, 0, 0, .3);
@@ -13,8 +10,8 @@ h1 {
   font-size: 32px;
   letter-spacing: -1px;
   text-shadow: 0 1px 0 rgba(255, 255, 255, .5);
-  background: url("https://1.gravatar.com/avatar/65adbfe28ca7937e17ead47565de4e1e?r=x&s=240") no-repeat center 100px;
-  padding: 350px 0 10px 0;
+  background: url("https://1.gravatar.com/avatar/65adbfe28ca7937e17ead47565de4e1e?r=x&s=240") no-repeat center 0px;
+  padding: 250px 0 10px 0;
   margin: 0; }
 
 

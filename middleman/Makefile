@@ -1,6 +1,6 @@
 FA_CDN_URL=http://netdna.bootstrapcdn.com/font-awesome/4.0.3
 
-SWATCH_THEME=spacelab
+SWATCH_THEME=flatly
 
 .PHONY: dl-bootswatch-spacelab dl-fontawesome
 dl-fontawesome:
