@@ -6,11 +6,8 @@
 
 
 body {
-  /** /
-  background: #d4d4d4 url("../images/background.png");
-  background: #d4d4d4;
-  /**/
   font-family: sans-serif; }
+
 
 h1 {
   color: rgba(0, 0, 0, .3);
@@ -21,6 +18,7 @@ h1 {
   background: url("https://1.gravatar.com/avatar/65adbfe28ca7937e17ead47565de4e1e?r=x&s=240") no-repeat center 100px;
   padding: 350px 0 10px 0;
   margin: 0; }
+
 
 .doc {
   font-size: 14px;
@@ -36,6 +34,7 @@ h1 {
     color: rgba(0, 0, 0, 0.3); }
     .doc a:hover {
       color: #666; }
+
 
 .welcome {
   text-align: center;
@@ -59,4 +58,26 @@ h1 {
   to {
     -webkit-transform: scale(1);
   }
+}
+
+
+/* footer */
+
+.footer {
+    padding-top: 40px;
+    padding-bottom: 30px;
+    margin-top: 100px;
+    color: #777;
+    text-align: center;
+    border-top: 1px solid #e5e5e5
+}
+
+.social-buttons {
+    display: inline-block;
+    box-sizing: border-box;
+}
+
+.social-button {
+    display: inline-block;
+    box-sizing: border-box;
 }
