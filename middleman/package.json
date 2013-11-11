@@ -1,0 +1,15 @@
+{
+  "name": "strawjs.github.io",
+  "version": "0.0.0",
+  "description": "source of strawjs.github.io",
+  "main": "bump.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "",
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "commander": "~2.0.0"
+  }
+}
