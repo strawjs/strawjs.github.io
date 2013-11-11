@@ -1,6 +1,7 @@
 {
     "name": "straw-bundle-android",
-    "version": "latest",
+    "version": "v0.0.1",
+    "time": 1383969350,
     "platform": "android",
     "libs": [
         {
