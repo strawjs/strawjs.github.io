@@ -1,6 +1,7 @@
 #! /usr/bin/env node
 
 var program = require('commander');
+var fs = require('fs');
 
 
 var Version = (function () {
@@ -34,7 +35,7 @@ var Version = (function () {
     };
 
     exports.fromString = function (version) {
-        var vars = /v(\d+).(\d+).(\d+)/.exec(version);
+        var vars = /v(\d+)\.(\d+)\.(\d+)/.exec(version);
 
         return new exports(vars[1], vars[2], vars[3]);
     };
@@ -79,7 +80,7 @@ var LibVersion = (function () {
     };
 
     exports.fromObject = function (obj) {
-        return new exports(obj.name, new Version(obj.version), obj.type);
+        return new exports(obj.name, Version.fromString(obj.version), obj.type);
     };
 
     return exports;
@@ -133,8 +134,20 @@ var BundleVersion = (function () {
         };
     };
 
+    bundleVersionPt.prettyJson = function () {
+        return JSON.stringify(this.toObject(), null, 4);
+    };
+
+    bundleVersionPt.saveAsLatest = function () {
+        fs.writeFileSync(exports.getLatestVersionPath(this.platform), this.prettyJson());
+    };
+
     exports.createFromLatestForPlatform = function (platform) {
-        return this.fromObject(require('./data/' + platform + '/versions/latest'));
+        return this.fromObject(require(this.getLatestVersionPath(platform)));
+    };
+
+    exports.getLatestVersionPath = function (platform) {
+        return './data/' + platform + '/versions/latest.json';
     };
 
     exports.fromObject = function (obj) {
@@ -186,11 +199,16 @@ var CLI = (function () {
 
         this.setTargetLib();
 
-        this.bump();
+        if (this.anyBump()) {
 
-        this.update();
+            this.bump();
 
-        console.log(this.target);
+            this.update();
+
+        } else {
+            console.log('no bump specified, did nothing.');
+        }
+
     };
 
     cliPt.getPlatform = function () {
@@ -230,22 +248,40 @@ var CLI = (function () {
 
     cliPt.update = function () {
         this.bundleVersion.update();
+
+        this.bundleVersion.saveAsLatest();
     };
 
     cliPt.bump = function () {
 
-        if (this.program.small) {
+        if (this.smallBump()) {
             this.target.bumpSmall();
         }
 
-        if (this.program.medium) {
+        if (this.mediumBump()) {
             this.target.bumpMedium();
         }
 
-        if (this.program.large) {
+        if (this.largeBump()) {
             this.target.bumpLarge();
         }
 
+    };
+
+    cliPt.smallBump = function () {
+        return this.program.small;
+    };
+
+    cliPt.mediumBump = function () {
+        return this.program.medium;
+    };
+
+    cliPt.largeBump = function () {
+        return this.program.large;
+    };
+
+    cliPt.anyBump = function () {
+        return this.smallBump() || this.mediumBump() || this.largeBump();
     };
 
     return exports;
