@@ -116,7 +116,7 @@ var BundleVersion = (function () {
     };
 
     bundleVersionPt.update = function () {
-        this.time = ~~(new Date() / 1000);
+        this.time = Math.floor(new Date() / 1000);
     };
 
     bundleVersionPt.getVersionLabel = function () {
@@ -152,47 +152,104 @@ var BundleVersion = (function () {
 }());
 
 
-program
-  .version('0.0.1')
-  .usage('-p [platform] [-name <lib name>|-b] [-l|-m|-s]')
-  .option('-p, --platform [platform]', 'target platform [android|ios]')
-  .option('-n, --name [name]', 'target lib [required]')
-  .option('-b, --bundle', 'bump bundle itself')
-  .option('-l, --large', 'large (1.0.0) bump')
-  .option('-m, --medium', 'medium (0.1.0) bump')
-  .option('-s, --small', 'small (0.0.1) bump [default]')
-  .parse(process.argv);
+var CLI = (function () {
+    'use strict';
+
+    var exports = function (program) {
+        this.program = program;
+    };
+
+    var cliPt = exports.prototype;
 
 
-try {
-    var bundleVersion = BundleVersion.createFromLatestForPlatform(program.platform);
+    exports.main = function () {
+        program
+            .version('0.0.1')
+            .usage('-p [platform] [-name <lib name>|-b] [-l|-m|-s]')
+            .option('-p, --platform [platform]', 'target platform [android|ios]')
+            .option('-n, --name [name]', 'target lib [required]')
+            .option('-b, --bundle', 'bump bundle itself')
+            .option('-l, --large', 'large (1.0.0) bump')
+            .option('-m, --medium', 'medium (0.1.0) bump')
+            .option('-s, --small', 'small (0.0.1) bump [default]')
+            .parse(process.argv);
 
-} catch (e) {
-    console.log('no such platform: ' + program.platform);
-    process.exit(1);
+        var cli = new this(program);
 
-}
+        cli.main();
 
-if (program.bundle) {
-    lib = bundleVersion;
+    };
 
-} else {
-    lib = bundleVersion.find(program.name);
+    cliPt.main = function () {
 
-}
+        this.getBundleVersion();
 
-if (program.small) {
-    lib.bumpSmall();
-}
+        this.setTargetLib();
 
-if (program.medium) {
-    lib.bumpMedium();
-}
+        this.bump();
 
-if (program.large) {
-    lib.bumpLarge();
-}
+        this.update();
 
-bundleVersion.update();
+        console.log(this.target);
+    };
 
-console.log(lib);
+    cliPt.getPlatform = function () {
+        return this.program.platform;
+    };
+
+    cliPt.getBundleVersion = function () {
+        this.bundleVersion = null;
+
+        try {
+            this.bundleVersion = BundleVersion.createFromLatestForPlatform(program.platform);
+
+        } catch (e) {
+            console.log('no such platform: ' + program.platform);
+            process.exit(1);
+
+        }
+    };
+
+    cliPt.isBundleUpdate = function () {
+        return this.program.bundle;
+    };
+
+    cliPt.setTargetLib = function () {
+        if (this.isBundleUpdate()) {
+            this.target = this.bundleVersion;
+
+        } else {
+            this.target = this.bundleVersion.find(this.getTargetName());
+
+        }
+    };
+
+    cliPt.getTargetName = function () {
+        return this.program.name;
+    };
+
+    cliPt.update = function () {
+        this.bundleVersion.update();
+    };
+
+    cliPt.bump = function () {
+
+        if (this.program.small) {
+            this.target.bumpSmall();
+        }
+
+        if (this.program.medium) {
+            this.target.bumpMedium();
+        }
+
+        if (this.program.large) {
+            this.target.bumpLarge();
+        }
+
+    };
+
+    return exports;
+
+}());
+
+CLI.main();
