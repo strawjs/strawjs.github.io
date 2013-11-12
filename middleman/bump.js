@@ -143,7 +143,11 @@ var BundleVersion = (function () {
     };
 
     bundleVersionPt.save = function () {
-        fs.writeFileSync(exports.getVersionPath(this.platform, this.version.toString()), this.prettyJson());
+        fs.writeFileSync(this.getVersionPath(), this.prettyJson());
+    };
+
+    bundleVersionPt.getVersionPath = function () {
+        return exports.getVersionPath(this.platform, this.version.toString());
     };
 
     exports.createFromLatestForPlatform = function (platform) {
@@ -215,7 +219,15 @@ var CLI = (function () {
             this.update();
 
         } else {
-            console.log('no bump specified, did nothing.');
+            console.log('no bump');
+        }
+
+        if (this.program.fix) {
+
+            console.log('save as version file: ' + this.bundleVersion.getVersionPath());
+
+            this.bundleVersion.save();
+
         }
 
     };
