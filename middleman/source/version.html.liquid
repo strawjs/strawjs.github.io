@@ -5,7 +5,7 @@ title: Straw Library
 
 <ol class="breadcrumb">
 
-  <li><i class="fa fa-android"></i></li>
+  <li><i class="fa fa-android"></i> Android </li>
 
 {% for ver in data.android.versions %}
 
@@ -25,7 +25,7 @@ title: Straw Library
 
 <ol class="breadcrumb">
 
- <li><i class="fa fa-apple"></i></li>
+ <li><i class="fa fa-apple"></i> iOS</li>
 
  <li>not yet</li>
 
@@ -35,7 +35,7 @@ title: Straw Library
 
 <div class="welcome">
 
-  <h1><i class="fa fa-android"></i> {{ data.display_name[name] }} <small>{{ version }}</small></h1>
+  <h1><i class="fa fa-data.icon_name[platform]"></i> {{ data.display_name[name] }} <small>{{ version }}</small></h1>
 
   {% if time %}
 
@@ -54,9 +54,7 @@ title: Straw Library
 
       <tr>
 
-        <th></th>
-
-        <th>library</th>
+        <th><i class="fa fa-{{ data.icon_name[platform] }}"></i> library</th>
 
         <th>version</th>
 
@@ -71,12 +69,6 @@ title: Straw Library
   {% for lib in libs %}
 
     <tr>
-
-      {% if forloop.first %}
-
-        <td rowspan="4"><i class="fa fa-{{ platform }}"></i> {{ data.display_name[platform] }}</td>
-
-      {% endif %}
 
       <td>
         <i class="fa fa-github"></i>
