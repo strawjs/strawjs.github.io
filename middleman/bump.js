@@ -142,12 +142,20 @@ var BundleVersion = (function () {
         fs.writeFileSync(exports.getLatestVersionPath(this.platform), this.prettyJson());
     };
 
+    bundleVersionPt.save = function () {
+        fs.writeFileSync(exports.getVersionPath(this.platform, this.version.toString()), this.prettyJson());
+    };
+
     exports.createFromLatestForPlatform = function (platform) {
         return this.fromObject(require(this.getLatestVersionPath(platform)));
     };
 
     exports.getLatestVersionPath = function (platform) {
         return './data/' + platform + '/versions/latest.json';
+    };
+
+    exports.getVersionPath = function (platform, version) {
+        return './data/' + platform + '/versions/' + version + '.json';
     };
 
     exports.fromObject = function (obj) {
@@ -178,13 +186,14 @@ var CLI = (function () {
     exports.main = function () {
         program
             .version('0.0.1')
-            .usage('-p [platform] [-name <lib name>|-b] [-l|-m|-s]')
+            .usage('-p [platform] [-name <lib name>|-b] [-l|-m|-s] [-f]')
             .option('-p, --platform [platform]', 'target platform [android|ios]')
             .option('-n, --name [name]', 'target lib [required]')
             .option('-b, --bundle', 'bump bundle itself')
             .option('-l, --large', 'large (1.0.0) bump')
             .option('-m, --medium', 'medium (0.1.0) bump')
-            .option('-s, --small', 'small (0.0.1) bump [default]')
+            .option('-s, --small', 'small (0.0.1) bump')
+            .option('-f, --fix', 'fix version (save as data/platform/versions/version.json)')
             .parse(process.argv);
 
         var cli = new this(program);
