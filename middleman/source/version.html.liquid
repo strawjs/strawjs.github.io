@@ -72,7 +72,7 @@ title: Straw Library
 
     {% elsif lib.type == "maven" %}
 
-      {% capture dep %}'org.kt3k.straw:{{ lib.name }}:{{ lib.version }}'{% endcapture %}
+      {% capture dep %}'org.kt3k.straw:{{ lib.name }}:{{ lib.version | replace: "v", "" }}'{% endcapture %}
 
     {% else %}
 
