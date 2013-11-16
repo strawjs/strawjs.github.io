@@ -5,23 +5,19 @@
     "libs": [
         {
             "name": "straw-android",
-            "version": "master",
-            "type": "maven"
+            "version": "master"
         },
         {
             "name": "straw-android-plugin",
-            "version": "master",
-            "type": "maven"
+            "version": "master"
         },
         {
             "name": "straw-android.js",
-            "version": "master",
-            "type": "bower"
+            "version": "master"
         },
         {
             "name": "straw-android-plugin.js",
-            "version": "master",
-            "type": "bower"
+            "version": "master"
         }
     ]
 }

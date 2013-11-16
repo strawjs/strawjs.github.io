@@ -70,9 +70,13 @@ title: Straw Library
 
       {% capture dep %}bower install --save git://github.com/strawjs/{{ lib.name }}.git#{{ lib.version }}{% endcapture %}
 
-    {% else if lib.type == "maven" %}
+    {% elsif lib.type == "maven" %}
 
       {% capture dep %}'org.kt3k.straw:{{ lib.name }}:{{ lib.version }}'{% endcapture %}
+
+    {% else %}
+
+      {% capture dep %}N/A{% endcapture %}
 
     {% endif %}
 
@@ -110,10 +114,10 @@ title: Straw Library
 
         <div class="input-group input-group-sm" style="width: 100%;">
 
-          <span class="input-group-addon">{%if lib.type == "bower" %}bower{% else if lib.type == "maven" %}gradle{% endif %}</span>
+          <span class="input-group-addon">{%if lib.type == "bower" %}bower{% elsif lib.type == "maven" %}gradle{% else %}<i class="fa fa-ban"></i>{% endif %}</span>
 
 
-          <input type="text" style="border-width: 1px;" class="form-control" value="{{ dep }}" onclick="this.select();" />
+          <input type="text" style="border-width: 1px; color: #9a9;" class="form-control" value="{{ dep }}" onclick="this.select();" />
 
         </div>
 
