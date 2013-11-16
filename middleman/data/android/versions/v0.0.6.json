@@ -7,22 +7,22 @@
         {
             "name": "straw-android",
             "version": "v0.2.1",
-            "type": "maven"
+            "type": ["maven"]
         },
         {
             "name": "straw-android-plugin",
             "version": "v0.2.2",
-            "type": "maven"
+            "type": ["maven"]
         },
         {
             "name": "straw-android.js",
             "version": "v0.1.5",
-            "type": "bower"
+            "type": ["bower"]
         },
         {
             "name": "straw-android-plugin.js",
             "version": "v0.0.2",
-            "type": "bower"
+            "type": ["bower"]
         }
     ]
 }
